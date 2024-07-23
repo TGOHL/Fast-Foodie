@@ -6,11 +6,11 @@ class Line extends StatelessWidget {
   final double width;
   final Color? color;
   const Line({
-    Key? key,
+    super.key,
     this.height = 1,
     this.width = 130,
     this.color,
-  }) : super(key: key);
+  });
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -1,9 +1,9 @@
+import 'package:fast_foodie/shared/helpers/get_it.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fast_foodie/shared/config/router.dart';
 import 'package:fast_foodie/shared/config/themes.dart';
-import 'package:fast_foodie/shared/cubit/main_cubit.dart';
 import 'package:fast_foodie/shared/helpers/initialization_helper.dart';
 
 void main() async {
@@ -20,7 +20,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_) => MainCubit()),
+        BlocProvider(create: (_) => homeCubit),
+        BlocProvider(create: (_) => favouriteCubit),
       ],
       child: ScreenUtilInit(
         designSize: const Size(375, 825),

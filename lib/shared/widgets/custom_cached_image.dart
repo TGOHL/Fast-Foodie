@@ -8,13 +8,13 @@ class CustomCachedImage extends StatelessWidget {
   final String? imageUrl;
   final String placeholderAsset;
   const CustomCachedImage({
-    Key? key,
+    super.key,
     this.width,
     this.height,
     required this.imageUrl,
     required this.placeholderAsset,
     this.fit = BoxFit.fitHeight,
-  }) : super(key: key);
+  });
 
   bool get isSVG {
     return placeholderAsset.endsWith('svg');

@@ -6,10 +6,10 @@ class AppThemes {
   static const Color main = Color(0xFF141416);
   static const Color mainDark = Color.fromARGB(255, 10, 10, 10);
   static const Color mainLight = Color.fromARGB(255, 29, 29, 36);
-  static const Color scaffold = Color(0x44000000);
+  static const Color scaffold = Color.fromARGB(255, 255, 255, 255);
 
-  static const Color secondaryLight = Color(0xFFEB8729);
-  static const Color secondaryDark = Color(0xFFD0491C);
+  static const Color secondaryLight = Colors.orangeAccent;
+  static const Color secondaryDark = Colors.orange;
 
   static const Color greenLight = Color(0xFF69C275);
   static const Color greenDark = Color(0xFF1D5B26);
@@ -20,9 +20,8 @@ class AppThemes {
   static const Color gray = Color(0xFFA0A0A0);
   static const Color whiteLight = Color(0xFFECECEC);
 
-  static const Color fontMain = Color(0xFF1C2C56);
-  static const Color fontSecondary = Color(0xFF77809A);
-
+  static const Color fontMain = Color.fromARGB(255, 0, 0, 0);
+  static const Color fontSecondary = Color.fromARGB(255, 123, 154, 119);
 
   static const List<Color> mainGradient = [mainLight, main];
   static const List<Color> secondaryGradient = [secondaryLight, secondaryDark];
@@ -30,9 +29,10 @@ class AppThemes {
   static lightTheme(BuildContext context) => ThemeData(
         brightness: Brightness.light,
         scaffoldBackgroundColor: scaffold,
-        primaryColor: Colors.blue,
+        primaryColor: Colors.orange,
+        colorScheme: const ColorScheme.light(primary: Colors.orange),
         appBarTheme: AppBarTheme.of(context).copyWith(
-          color: Colors.blue,
+          color: const Color(0xFFFF9A12),
           titleTextStyle: const TextStyle(
             color: Colors.white,
             fontSize: 18,
@@ -46,9 +46,6 @@ class AppThemes {
             fontFamily: fontFamily,
             fontSize: 14,
           ),
-          titleLarge: TextStyle(color: fontSecondary, fontFamily: fontFamily),
-          titleMedium: TextStyle(color: Colors.black, fontFamily: fontFamily),
-          titleSmall: TextStyle(color: fontSecondary, fontFamily: fontFamily),
         ),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       );

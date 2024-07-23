@@ -17,7 +17,7 @@ class MainButton extends StatelessWidget {
   final Color? color;
 
   const MainButton({
-    Key? key,
+    super.key,
     required this.label,
     required this.onPressed,
     this.width = 280,
@@ -29,7 +29,7 @@ class MainButton extends StatelessWidget {
     this.verticalGradient = true,
     this.icon,
     this.color,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -53,12 +53,8 @@ class MainButton extends StatelessWidget {
             : [],
         gradient: color == null && filled
             ? LinearGradient(
-                begin: verticalGradient
-                    ? Alignment.topCenter
-                    : Alignment.centerLeft,
-                end: verticalGradient
-                    ? Alignment.bottomCenter
-                    : Alignment.centerRight,
+                begin: verticalGradient ? Alignment.topCenter : Alignment.centerLeft,
+                end: verticalGradient ? Alignment.bottomCenter : Alignment.centerRight,
                 colors: AppThemes.secondaryGradient,
               )
             : null,
@@ -73,9 +69,7 @@ class MainButton extends StatelessWidget {
           child: Container(
             alignment: Alignment.center,
             child: Row(
-              mainAxisAlignment: icon == null
-                  ? MainAxisAlignment.center
-                  : MainAxisAlignment.start,
+              mainAxisAlignment: icon == null ? MainAxisAlignment.center : MainAxisAlignment.start,
               children: [
                 if (icon != null)
                   Padding(
