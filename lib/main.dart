@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         builder: (context, child) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            title: 'Investment Analytics',
+            title: 'Fast Foodie',
             theme: AppThemes.lightTheme(context),
             darkTheme: AppThemes.darkTheme(context),
             themeMode: ThemeMode.light,
