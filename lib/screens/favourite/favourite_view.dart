@@ -13,9 +13,6 @@ class FavouriteView extends StatelessWidget {
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: BlocBuilder<FavouriteCubit, FavouriteState>(
-        buildWhen: (_, current) {
-          return true;
-        },
         builder: (context, state) {
           final cubit = context.read<FavouriteCubit>();
 
@@ -34,14 +31,40 @@ class FavouriteView extends StatelessWidget {
           }
           return ListView.builder(
             controller: cubit.scrollController,
-            padding: EdgeInsets.all(16.w),
-            itemCount: cubit.restaurants.length,
+            padding: EdgeInsets.all(16.w).copyWith(top: 8.w),
+            itemCount: cubit.restaurants.length + 1,
             itemBuilder: (_, i) {
+              if (i == 0) {
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 6),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 12.w,
+                      ),
+                      Text(
+                        '${favouriteCubit.restaurants.length} Restaurants',
+                        style: AppStyles.mainTextStyle,
+                      ),
+                      const Spacer(),
+                      ...ListStyle.values.map(
+                        (e) => ListStyleIcon(
+                          listStyle: e,
+                          isSelected: e == favouriteCubit.listStyel,
+                          onTap: () => favouriteCubit.changeListStyle(e),
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              }
+              final rest = cubit.restaurants[i - 1];
               return PlaceTile(
-                placeModel: cubit.restaurants[i],
-                isFavourite: true,
+                placeModel: rest,
+                isFavourite: favouriteCubit.isFavourite(rest.id),
+                listStyle: favouriteCubit.listStyel,
                 onChangeFavouriteTap: () {
-                  favouriteCubit.toggleFavourite(cubit.restaurants[i]);
+                  favouriteCubit.toggleFavourite(rest);
                 },
               );
             },

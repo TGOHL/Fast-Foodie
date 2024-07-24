@@ -9,6 +9,8 @@ class HomeInitializedState extends HomeState {}
 
 class HomeFavouriteChangedState extends HomeState {}
 
+class HomeStyleChangedState extends HomeState {}
+
 class HomeErrorState extends HomeState {
   final Exception error;
 

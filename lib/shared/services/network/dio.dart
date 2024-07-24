@@ -26,7 +26,6 @@ class DioServices {
       );
       if (response.statusCode == 200) {
         List<dynamic> list = (response.data as Map<String, dynamic>)['results'];
-        print((response.data as Map<String, dynamic>)['context']);
         return list.map((e) => PlaceModel.fromMap(e)).toList();
       }
       throw WentWrongExeption();

@@ -57,14 +57,40 @@ class HomeView extends StatelessWidget {
           ),
           body: ListView.builder(
             controller: cubit.scrollController,
-            padding: EdgeInsets.all(16.w),
-            itemCount: cubit.restaurants.length,
+            padding: EdgeInsets.all(16.w).copyWith(top: 8.w),
+            itemCount: cubit.restaurants.length + 1,
             itemBuilder: (_, i) {
+              if (i == 0) {
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 6),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 12.w,
+                      ),
+                      Text(
+                        '${homeCubit.restaurants.length} Restaurants',
+                        style: AppStyles.mainTextStyle,
+                      ),
+                      const Spacer(),
+                      ...ListStyle.values.map(
+                        (e) => ListStyleIcon(
+                          listStyle: e,
+                          isSelected: e == homeCubit.listStyel,
+                          onTap: () => homeCubit.changeListStyle(e),
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              }
+              final rest = cubit.restaurants[i - 1];
               return PlaceTile(
-                placeModel: cubit.restaurants[i],
-                isFavourite: favouriteCubit.isFavourite(cubit.restaurants[i].id),
+                placeModel: rest,
+                isFavourite: favouriteCubit.isFavourite(rest.id),
+                listStyle: homeCubit.listStyel,
                 onChangeFavouriteTap: () {
-                  favouriteCubit.toggleFavourite(cubit.restaurants[i]);
+                  favouriteCubit.toggleFavourite(rest);
                 },
               );
             },

@@ -1,3 +1,4 @@
+import 'package:fast_foodie/shared/enums/list_style.dart';
 import 'package:fast_foodie/shared/helpers/geolocator.dart';
 import 'package:fast_foodie/shared/models/app/place.dart';
 import 'package:fast_foodie/shared/models/exeptions/custom_exeption.dart';
@@ -15,7 +16,8 @@ class HomeCubit extends Cubit<HomeState> {
   final List<PlaceModel> _restaurants = [];
 
   bool _isInitailized = false;
-
+  ListStyle _listStyel = ListStyle.large;
+  ListStyle get listStyel => _listStyel;
   bool get isInitailized => _isInitailized;
   List<PlaceModel> get restaurants => [..._restaurants];
 
@@ -39,6 +41,11 @@ class HomeCubit extends Cubit<HomeState> {
 
   void onFavouriteChanged() {
     emit(HomeFavouriteChangedState());
+  }
+
+  void changeListStyle(ListStyle s) {
+    _listStyel = s;
+    emit(HomeStyleChangedState());
   }
 
   @override

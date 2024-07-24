@@ -1,7 +1,9 @@
 import 'package:fast_foodie/screens/favourite/favourite_layout.dart';
 import 'package:fast_foodie/shared/config/styles.dart';
 import 'package:fast_foodie/shared/cubit/favourite_cubit.dart';
+import 'package:fast_foodie/shared/enums/list_style.dart';
 import 'package:fast_foodie/shared/helpers/get_it.dart';
+import 'package:fast_foodie/shared/widgets/list_style_icon.dart';
 import 'package:fast_foodie/shared/widgets/loading.dart';
 import 'package:fast_foodie/shared/widgets/main_button.dart';
 import 'package:fast_foodie/shared/widgets/place_tile.dart';

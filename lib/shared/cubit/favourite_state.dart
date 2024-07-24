@@ -7,6 +7,8 @@ class FavouriteInitial extends FavouriteState {}
 
 class FavouriteInitializedState extends FavouriteState {}
 
+class FavouriteStyleChangedState extends FavouriteState {}
+
 class FavouriteAddState extends FavouriteState {
   final PlaceModel place;
 

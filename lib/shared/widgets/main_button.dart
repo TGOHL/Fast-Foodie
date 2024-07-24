@@ -37,11 +37,8 @@ class MainButton extends StatelessWidget {
       height: height.h,
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        // border: filled
-        //     ? null
-        //     : Border.all(color: AppThemes.secondaryLight, width: 2.w),
+        border: filled ? null : Border.all(color: AppThemes.secondaryLight, width: 2.w),
         borderRadius: BorderRadius.circular(borderRadius.w),
-
         gradient: color == null && filled
             ? LinearGradient(
                 begin: verticalGradient ? Alignment.topCenter : Alignment.centerLeft,
@@ -49,7 +46,7 @@ class MainButton extends StatelessWidget {
                 colors: AppThemes.secondaryGradient,
               )
             : null,
-        color: color,
+        color: filled ? color : null,
       ),
       child: Material(
         color: Colors.transparent,
@@ -70,7 +67,8 @@ class MainButton extends StatelessWidget {
                   ),
                 Text(
                   label,
-                  style: TextStyle(fontSize: fontSize.sp, color: fontColor, fontFamily: AppThemes.fontFamily, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: fontSize.sp, color: filled ? fontColor : color, fontFamily: AppThemes.fontFamily, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
