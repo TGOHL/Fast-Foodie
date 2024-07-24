@@ -11,4 +11,6 @@ class DetailsErrorState extends DetailsState {
 
 final class DetailsInitial extends DetailsState {}
 
-final class DetailsMarkerAddedInitial extends DetailsState {}
+final class DetailsMarkerAddedState extends DetailsState {}
+
+final class DetailsImageUpdateState extends DetailsState {}

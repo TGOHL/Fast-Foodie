@@ -1,4 +1,5 @@
 import 'package:fast_foodie/shared/helpers/maps.dart';
+import 'package:fast_foodie/shared/services/network/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fast_foodie/shared/models/app/place.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,10 @@ class DetailsCubit extends Cubit<DetailsState> {
   PlaceModel get placeModel => _placeModel;
   List<Marker> get allMarkers => [..._allMarkers];
   GoogleMapController? get controller => _controller;
+
+  String? _imageUrl;
+
+  String? get imageUrl => _imageUrl;
 
   set setGoogleController(GoogleMapController c) => _controller = c;
 
@@ -34,11 +39,13 @@ class DetailsCubit extends Cubit<DetailsState> {
   void addMarker() {
     final position = LatLng(_placeModel.locationModel.latitude, _placeModel.locationModel.longitude);
     _allMarkers.add(Marker(markerId: MarkerId(_placeModel.id), position: position));
-    emit(DetailsMarkerAddedInitial());
+    emit(DetailsMarkerAddedState());
   }
 
-  Future init(PlaceModel place) async {
+  Future init(PlaceModel place, String? imageUrl) async {
     _placeModel = place;
+    _imageUrl = imageUrl ?? (await DioServices().getOutdoorPicture(_placeModel.id))?.imageUrl;
+    if (_imageUrl != null) emit(DetailsImageUpdateState());
   }
 
   DetailsCubit() : super(DetailsInitial());

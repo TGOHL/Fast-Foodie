@@ -6,6 +6,7 @@ import 'package:fast_foodie/shared/models/exeptions/geolocator_permission.dart';
 import 'package:fast_foodie/shared/services/network/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geolocator/geolocator.dart';
 
 import '../models/exeptions/went_wrong.dart';
 
@@ -14,6 +15,8 @@ part 'home_state.dart';
 class HomeCubit extends Cubit<HomeState> {
   final ScrollController scrollController = ScrollController();
   final List<PlaceModel> _restaurants = [];
+
+  late final Position myLocation;
 
   bool _isInitailized = false;
   ListStyle _listStyel = ListStyle.large;
@@ -26,8 +29,8 @@ class HomeCubit extends Cubit<HomeState> {
   Future init() async {
     try {
       WidgetsFlutterBinding.ensureInitialized();
-      final position = await GeoLocatorHelper().determinePosition();
-      _restaurants.addAll(await DioServices().getRestaurants(position.latitude, position.longitude));
+      myLocation = await GeoLocatorHelper().determinePosition();
+      _restaurants.addAll(await DioServices().getRestaurants(myLocation.latitude, myLocation.longitude));
       _isInitailized = true;
       emit(HomeInitializedState());
     } on CustomExeption catch (e) {

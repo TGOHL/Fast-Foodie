@@ -10,6 +10,8 @@ class PlaceModel {
   final Availability availability;
   final LocationModel locationModel;
   final AddressModel addressModel;
+
+  String? imageUrl;
   PlaceModel({
     required this.id,
     required this.name,
@@ -18,6 +20,13 @@ class PlaceModel {
     required this.addressModel,
     required this.availability,
   });
+
+  String get distanceFormated {
+    if (distance >= 1000) {
+      return '${(distance / 1000).toStringAsFixed(1)} km';
+    }
+    return '${distance.toString()} m';
+  }
 
   String? get getAddress => addressModel.address ?? addressModel.formattedAddress;
 

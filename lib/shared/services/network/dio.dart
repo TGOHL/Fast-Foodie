@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:fast_foodie/shared/config/constants.dart';
+import 'package:fast_foodie/shared/models/app/photo.dart';
 import 'package:fast_foodie/shared/models/app/place.dart';
 import 'package:fast_foodie/shared/models/exeptions/went_wrong.dart';
 
@@ -27,6 +28,51 @@ class DioServices {
       if (response.statusCode == 200) {
         List<dynamic> list = (response.data as Map<String, dynamic>)['results'];
         return list.map((e) => PlaceModel.fromMap(e)).toList();
+      }
+      throw WentWrongExeption();
+    } catch (e) {
+      throw WentWrongExeption();
+    }
+  }
+
+  Future<PhotoModel?> getOutdoorPicture(String id) async {
+    try {
+      final response = await _dio.get(
+        '/v3/places/$id/photos',
+        queryParameters: {
+          'limit': 1,
+          'sort': 'POPULAR',
+          'classifications': 'outdoor',
+        },
+      );
+      if (response.statusCode == 200) {
+        List<dynamic> list = response.data;
+        if (list.isEmpty) {
+          return await getPicture(id);
+        }
+        return PhotoModel.fromMap(list.first);
+      }
+      throw WentWrongExeption();
+    } catch (e) {
+      throw WentWrongExeption();
+    }
+  }
+
+  Future<PhotoModel?> getPicture(String id) async {
+    try {
+      final response = await _dio.get(
+        '/v3/places/$id/photos',
+        queryParameters: {
+          'limit': 1,
+          'sort': 'POPULAR',
+        },
+      );
+      if (response.statusCode == 200) {
+        List<dynamic> list = response.data;
+        if (list.isEmpty) {
+          return null;
+        }
+        return PhotoModel.fromMap(list.first);
       }
       throw WentWrongExeption();
     } catch (e) {
