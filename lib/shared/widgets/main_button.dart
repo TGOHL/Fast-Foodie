@@ -54,7 +54,7 @@ class MainButton extends StatelessWidget {
         child: InkWell(
           onTap: onPressed,
           borderRadius: BorderRadius.circular(borderRadius.w),
-          splashColor: Colors.greenAccent,
+          splashColor: filled ? Colors.orangeAccent : Colors.orangeAccent.shade100,
           child: Container(
             alignment: Alignment.center,
             child: Row(

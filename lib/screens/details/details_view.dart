@@ -38,34 +38,67 @@ class DetailsView extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(12.w, 24.h, 0, 48.h),
+                  padding: EdgeInsets.fromLTRB(12.w, 24.h, 0, 24.h),
                   child: Column(
                     children: [
                       PlantPieceOfInfo(
                         title: 'Name:',
                         value: placeModel.name,
+                        overflow: TextOverflow.clip,
                       ),
                       SizedBox(height: 8.h),
                       PlantPieceOfInfo(
                         title: 'Address:',
                         value: placeModel.getAddress,
+                        overflow: TextOverflow.clip,
                       ),
                       SizedBox(height: 8.h),
                       PlantPieceOfInfo(
                         title: 'Distance:',
                         value: placeModel.distance,
+                        overflow: TextOverflow.clip,
                       ),
                       SizedBox(height: 8.h),
                       PlantPieceOfInfo(
                         title: 'Status:',
                         value: placeModel.availability.label,
+                        overflow: TextOverflow.clip,
                       ),
                     ],
                   ),
                 ),
+                Line(
+                  width: ScreenUtil().screenWidth,
+                  color: Colors.black12,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 16.w),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 250.h,
+                    decoration: BoxDecoration(color: Colors.black12, border: Border.all(color: Colors.grey.shade300)),
+                    child: GoogleMap(
+                      initialCameraPosition: kGooglePlex,
+                      markers: Set.from(cubit.allMarkers),
+                      onMapCreated: (controller) async {
+                        cubit.setGoogleController = controller;
+                        await cubit.moveAnimateToAddress();
+                        cubit.addMarker();
+                      },
+                      mapType: MapType.normal,
+                      myLocationEnabled: true,
+                      myLocationButtonEnabled: false,
+                      zoomGesturesEnabled: true,
+                      scrollGesturesEnabled: false,
+                      tiltGesturesEnabled: false,
+                      rotateGesturesEnabled: false,
+                      indoorViewEnabled: true,
+                    ),
+                  ),
+                ),
                 MainButton(
                   label: 'Open Maps',
-                  onPressed: cubit.openInMaps,
+                  onPressed: cubit.onMapTap,
                   width: ScreenUtil().screenWidth,
                   color: AppThemes.secondaryDark,
                 )

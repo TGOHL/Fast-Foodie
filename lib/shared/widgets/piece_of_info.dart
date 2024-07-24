@@ -6,7 +6,8 @@ class PlantPieceOfInfo extends StatelessWidget {
   final String title;
   final double titleMaxWidth;
   final dynamic value;
-  const PlantPieceOfInfo({super.key, required this.title, this.value, this.titleMaxWidth = 58});
+  final TextOverflow overflow;
+  const PlantPieceOfInfo({super.key, required this.title, this.value, this.titleMaxWidth = 58, this.overflow = TextOverflow.ellipsis});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class PlantPieceOfInfo extends StatelessWidget {
         Expanded(
           child: Text(
             value?.toString() ?? 'N/A',
-            overflow: TextOverflow.ellipsis,
+            overflow: overflow,
             style: AppStyles.mainTextStyle.copyWith(fontWeight: FontWeight.bold),
           ),
         ),

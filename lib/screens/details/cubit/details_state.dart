@@ -10,3 +10,5 @@ class DetailsErrorState extends DetailsState {
 }
 
 final class DetailsInitial extends DetailsState {}
+
+final class DetailsMarkerAddedInitial extends DetailsState {}

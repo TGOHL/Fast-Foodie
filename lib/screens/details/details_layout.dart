@@ -1,14 +1,17 @@
 import 'package:fast_foodie/screens/details/cubit/details_cubit.dart';
 import 'package:fast_foodie/shared/config/assets.dart';
+import 'package:fast_foodie/shared/config/constants.dart';
 import 'package:fast_foodie/shared/config/themes.dart';
 import 'package:fast_foodie/shared/models/app/place.dart';
 import 'package:fast_foodie/shared/widgets/custom_cached_image.dart';
+import 'package:fast_foodie/shared/widgets/line.dart';
 import 'package:fast_foodie/shared/widgets/main_button.dart';
 import 'package:fast_foodie/shared/widgets/piece_of_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fast_foodie/shared/helpers/toast_helper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 part 'details_view.dart';
 
