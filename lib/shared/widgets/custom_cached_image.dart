@@ -23,16 +23,6 @@ class CustomCachedImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (imageUrl == null || imageUrl!.isEmpty) {
-      // if (isSVG) {
-      //   return SvgPicture.asset(
-      //     placeholderAsset,
-      //     width: width,
-      //     height: height,
-      //     fit: fit,
-      //     colorBlendMode: BlendMode.luminosity,
-      //   );
-      // }
-
       return Image.asset(
         placeholderAsset,
         width: width,
@@ -50,16 +40,6 @@ class CustomCachedImage extends StatelessWidget {
       fadeInDuration: const Duration(milliseconds: 300),
       fadeOutDuration: const Duration(milliseconds: 300),
       placeholder: (_, __) {
-        // if (isSVG) {
-        //   return SvgPicture.asset(
-        //     placeholderAsset,
-        //     width: width,
-        //     height: height,
-        //     fit: fit,
-        //     colorBlendMode: BlendMode.luminosity,
-        //   );
-        // }
-
         return Image.asset(
           placeholderAsset,
           width: width,
@@ -69,16 +49,6 @@ class CustomCachedImage extends StatelessWidget {
         );
       },
       errorWidget: (_, __, ___) {
-        // if (isSVG) {
-        //   return SvgPicture.asset(
-        //     placeholderAsset,
-        //     width: width,
-        //     height: height,
-        //     fit: fit,
-        //     colorBlendMode: BlendMode.luminosity,
-        //   );
-        // }
-
         return Image.asset(
           placeholderAsset,
           width: width,

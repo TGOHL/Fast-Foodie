@@ -19,6 +19,7 @@ class PlaceModel {
     required this.locationModel,
     required this.addressModel,
     required this.availability,
+    this.imageUrl,
   });
 
   String get distanceFormated {
@@ -53,6 +54,7 @@ class PlaceModel {
       'fsq_id': id,
       'name': name,
       'distance': distance,
+      'image_url': imageUrl,
       'closed_bucket': availability.name,
       'geocodes': {'main': locationModel.toMap()},
       'location': addressModel.toMap(),
@@ -64,6 +66,7 @@ class PlaceModel {
       id: map['fsq_id'] as String,
       name: map['name'] as String,
       distance: map['distance'] as int,
+      imageUrl: map['image_url'] as String?,
       availability: Availability.values.firstWhere(
         (element) => element.name == map['closed_bucket'] as String,
         orElse: () => Availability.Unsure,
