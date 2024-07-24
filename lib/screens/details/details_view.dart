@@ -78,6 +78,7 @@ class DetailsView extends StatelessWidget {
                         height: 16.h,
                       ),
                       Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Expanded(
                             child: PlantPieceOfInfo(

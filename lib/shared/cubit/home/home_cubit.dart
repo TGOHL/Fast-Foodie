@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 
-import '../models/exeptions/went_wrong.dart';
+import '../../models/exeptions/went_wrong.dart';
 
 part 'home_state.dart';
 

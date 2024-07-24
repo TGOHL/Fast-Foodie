@@ -1,6 +1,6 @@
 import 'package:fast_foodie/screens/favourite/favourite_layout.dart';
 import 'package:fast_foodie/shared/config/styles.dart';
-import 'package:fast_foodie/shared/cubit/favourite_cubit.dart';
+import 'package:fast_foodie/shared/cubit/favourite/favourite_cubit.dart';
 import 'package:fast_foodie/shared/enums/list_style.dart';
 import 'package:fast_foodie/shared/helpers/get_it.dart';
 import 'package:fast_foodie/shared/widgets/list_style_icon.dart';
@@ -13,7 +13,7 @@ import 'package:fast_foodie/shared/helpers/toast_helper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geolocator/geolocator.dart';
 
-import '../../shared/cubit/home_cubit.dart';
+import '../../shared/cubit/home/home_cubit.dart';
 
 part 'home_view.dart';
 
