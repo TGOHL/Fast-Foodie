@@ -1,3 +1,3 @@
 class AppAssets {
-  static const placePlaceHolder = 'assets/images/plant_placeholder.png';
+  static const placePlaceHolder = 'assets/images/restaurant_placeholder.jpg';
 }
