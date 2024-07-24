@@ -1,3 +1,4 @@
+import 'package:fast_foodie/screens/details/details_layout.dart';
 import 'package:fast_foodie/screens/favourite/favourite_layout.dart';
 import 'package:fast_foodie/screens/home/home_layout.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ class AppRouter {
       '/': (ctx) => const HomeScreen(),
       HomeScreen.routeName: (ctx) => const HomeScreen(),
       FavouriteScreen.routeName: (ctx) => const FavouriteScreen(),
+      DetailsScreen.routeName: (ctx) => const DetailsScreen(),
     };
   }
 }

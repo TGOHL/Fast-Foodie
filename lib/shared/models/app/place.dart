@@ -1,10 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:fast_foodie/shared/enums/availability.dart';
+
 class PlaceModel {
   final String id;
   final String name;
   final int distance;
+  final Availability availability;
   final LocationModel locationModel;
   final AddressModel addressModel;
   PlaceModel({
@@ -13,6 +16,7 @@ class PlaceModel {
     required this.distance,
     required this.locationModel,
     required this.addressModel,
+    required this.availability,
   });
 
   String? get getAddress => addressModel.address ?? addressModel.formattedAddress;
@@ -21,12 +25,14 @@ class PlaceModel {
     String? id,
     String? name,
     int? distance,
+    Availability? availability,
     LocationModel? locationModel,
     AddressModel? addressModel,
   }) {
     return PlaceModel(
       id: id ?? this.id,
       name: name ?? this.name,
+      availability: availability ?? this.availability,
       distance: distance ?? this.distance,
       locationModel: locationModel ?? this.locationModel,
       addressModel: addressModel ?? this.addressModel,
@@ -38,6 +44,7 @@ class PlaceModel {
       'fsq_id': id,
       'name': name,
       'distance': distance,
+      'closed_bucket': availability.name,
       'geocodes': {'main': locationModel.toMap()},
       'location': addressModel.toMap(),
     };
@@ -48,6 +55,10 @@ class PlaceModel {
       id: map['fsq_id'] as String,
       name: map['name'] as String,
       distance: map['distance'] as int,
+      availability: Availability.values.firstWhere(
+        (element) => element.name == map['closed_bucket'] as String,
+        orElse: () => Availability.Unsure,
+      ),
       locationModel: LocationModel.fromMap(map['geocodes']['main'] as Map<String, dynamic>),
       addressModel: AddressModel.fromMap(map['location'] as Map<String, dynamic>),
     );

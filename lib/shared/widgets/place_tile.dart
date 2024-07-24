@@ -1,3 +1,4 @@
+import 'package:fast_foodie/screens/details/details_layout.dart';
 import 'package:fast_foodie/shared/config/assets.dart';
 import 'package:fast_foodie/shared/config/themes.dart';
 import 'package:fast_foodie/shared/models/app/place.dart';
@@ -15,7 +16,9 @@ class PlaceTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).pushNamed(DetailsScreen.routeName, arguments: placeModel);
+      },
       child: Card(
         color: Colors.white,
         child: Row(

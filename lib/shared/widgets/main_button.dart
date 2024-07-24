@@ -1,11 +1,10 @@
+import 'package:fast_foodie/shared/config/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../config/themes.dart';
-
 class MainButton extends StatelessWidget {
-  final int width;
-  final int height;
+  final double width;
+  final double height;
   final String label;
   final int fontSize;
   final int borderRadius;
@@ -22,7 +21,7 @@ class MainButton extends StatelessWidget {
     required this.onPressed,
     this.width = 280,
     this.height = 45,
-    this.fontSize = 19,
+    this.fontSize = 17,
     this.borderRadius = 4,
     this.fontColor = Colors.white,
     this.filled = true,
@@ -42,15 +41,7 @@ class MainButton extends StatelessWidget {
         //     ? null
         //     : Border.all(color: AppThemes.secondaryLight, width: 2.w),
         borderRadius: BorderRadius.circular(borderRadius.w),
-        boxShadow: filled
-            ? [
-                BoxShadow(
-                  color: Colors.black38,
-                  blurRadius: 6.w,
-                  offset: Offset(-3.w, 3.w),
-                ),
-              ]
-            : [],
+
         gradient: color == null && filled
             ? LinearGradient(
                 begin: verticalGradient ? Alignment.topCenter : Alignment.centerLeft,
@@ -66,6 +57,7 @@ class MainButton extends StatelessWidget {
         child: InkWell(
           onTap: onPressed,
           borderRadius: BorderRadius.circular(borderRadius.w),
+          splashColor: Colors.greenAccent,
           child: Container(
             alignment: Alignment.center,
             child: Row(
@@ -78,12 +70,7 @@ class MainButton extends StatelessWidget {
                   ),
                 Text(
                   label,
-                  style: TextStyle(
-                    fontSize: fontSize.sp,
-                    color: fontColor,
-                    // fontWeight: FontWeight.bold,
-                    // fontStyle: FontStyle.italic,
-                  ),
+                  style: TextStyle(fontSize: fontSize.sp, color: fontColor, fontFamily: AppThemes.fontFamily, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
